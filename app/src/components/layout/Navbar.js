@@ -23,7 +23,7 @@ const Navbar = () => {
           <ul className="navbar-nav mr-auto">
             <li className="nav-item active">
               <a className="nav-link" href="#!">
-                <i class="fas fa-search" /> Find Jobs
+                <i className="fas fa-search" /> Find Jobs
                 <span className="sr-only">(current)</span>
               </a>
             </li>
