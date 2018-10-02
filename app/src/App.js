@@ -4,6 +4,7 @@ import Navbar from "./components/layout/Navbar";
 import SearchForm from "./components/search/SearchForm";
 import { BarLoader } from "react-spinners";
 import axios from "axios";
+import JobBlock from "./components/jobs/JobBlock";
 
 class App extends Component {
   state = {
@@ -55,9 +56,11 @@ class App extends Component {
             />
           </div>
           <hr />
-          <ul>
+          <ul className="list-unstyled">
             {this.state.jobs.map(job => (
-              <li key={job.id}>{job.title}</li>
+              <li key={job.id}>
+                <JobBlock job={job} />
+              </li>
             ))}
           </ul>
         </div>
