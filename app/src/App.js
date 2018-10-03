@@ -4,7 +4,9 @@ import Navbar from "./components/layout/Navbar";
 import SearchForm from "./components/search/SearchForm";
 import { BarLoader } from "react-spinners";
 import axios from "axios";
-import JobBlock from "./components/jobs/JobBlock";
+import SearchResults from "./components/search/SearchResults";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import JobDetails from "./components/jobs/JobDetails";
 
 class App extends Component {
   state = {
@@ -40,31 +42,31 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
-      <React.Fragment>
-        <Navbar />
-        <div className="container">
-          <h1>Job Search</h1>
-          <SearchForm jobSearch={this.jobsList} />
-          <div className="text-center">
-            <BarLoader
-              widthUnit={"%"}
-              width={100}
-              color={"#28a745"}
-              loading={this.state.loading}
+      <Router>
+        <React.Fragment>
+          <Navbar />
+          <div className="container">
+            <h1>Job Search</h1>
+            <SearchForm jobSearch={this.jobsList} />
+            <div className="text-center">
+              <BarLoader
+                widthUnit={"%"}
+                width={100}
+                color={"#28a745"}
+                loading={this.state.loading}
+              />
+            </div>
+            <hr />
+            <Route
+              exact
+              path="/"
+              render={() => <SearchResults jobs={this.state.jobs} />}
             />
+            <Route exact path="/job-details/:id" component={JobDetails} />
           </div>
-          <hr />
-          <ul className="list-unstyled">
-            {this.state.jobs.map(job => (
-              <li key={job.id}>
-                <JobBlock job={job} />
-              </li>
-            ))}
-          </ul>
-        </div>
-      </React.Fragment>
+        </React.Fragment>
+      </Router>
     );
   }
 }

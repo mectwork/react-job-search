@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class JobBlock extends Component {
-  render() {   
+  render() {
     const { job } = this.props;
     return (
-      <div className="card">
+      <div className="card mb-2">
         <div className="card-body">
           <h4>{job.title}</h4>
           <p>
@@ -20,12 +21,18 @@ export default class JobBlock extends Component {
                 .splice(0, 50)
                 .join(" ")
             }}
-          >
-            {}
-          </div>
+          />
           <div className="row">
             <button className="btn btn-outline-success mx-2">Apply Now</button>
-            <button className="btn btn-outline-dark">View Details</button>
+            <Link
+              to={{
+                pathname: `/job-details/${job.id}`,
+                state: job
+              }}
+              className="btn btn-outline-dark"
+            >
+              View Details
+            </Link>
           </div>
         </div>
       </div>
